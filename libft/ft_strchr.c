@@ -6,7 +6,7 @@
 /*   By: aalquraa <aalquraa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 12:24:32 by aalquraa          #+#    #+#             */
-/*   Updated: 2025/01/29 19:46:39 by aalquraa         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:43:32 by aalquraa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ char	*ft_strchr(const char *s, int c)
 	char	*a;
 
 	if (!s)
-	{
-		return NULL;		
-	}
+		return (NULL);
 	if ((char)c == '\0')
 		return ((char *)s);
 	a = (char *)s;

@@ -6,7 +6,7 @@
 /*   By: aalquraa <aalquraa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:33:43 by aalquraa          #+#    #+#             */
-/*   Updated: 2025/01/29 19:50:19 by aalquraa         ###   ########.fr       */
+/*   Updated: 2025/02/03 19:50:52 by aalquraa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-
 	while (str[i])
 	{
 		i++;

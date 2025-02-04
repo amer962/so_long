@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   widthandheight.c                                   :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aalquraa <aalquraa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/01 20:07:51 by aalquraa          #+#    #+#             */
-/*   Updated: 2025/02/04 16:46:57 by aalquraa         ###   ########.fr       */
+/*   Created: 2025/02/03 18:26:58 by aalquraa          #+#    #+#             */
+/*   Updated: 2025/02/04 16:45:01 by aalquraa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	row(t_game *game)
+void	init(t_game *game)
 {
-	int	n;
-
-	n = 0;
-	while (game->map[n] != NULL)
-	{
-		n++;
-	}
-	return (n);
+	game->moves = 0;
+	game->collected_items = 0;
+	game->total_collectibles = count_collectible(game->map);
+	find_exit_pos(game);
 }
 
-int	columns(t_game *game)
+void	movepart(t_game *game)
 {
-	int	m;
-
-	m = 0;
-	if (game->map[0] != NULL)
-	{
-		while (game->map[0][m] != '\0')
-		{
-			m++;
-		}
-	}
-	return (m);
+	game->map[game->player_y][game->player_x] = '0';
+	if (game->exit_x == game->player_x && game->exit_y == game->player_y)
+		game->map[game->player_y][game->player_x] = 'E';
+	game->moves++;
 }

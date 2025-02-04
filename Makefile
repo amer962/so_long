@@ -7,7 +7,7 @@ CFLAGS = -Wall -Wextra -Werror -g -I. -I$(MLX_DIR)
 RM = rm -f
 
 SRC = so_long.c error_map.c load.c widthandheight.c keyhook.c find_player.c \
-		count_collectibles.c close.c
+		count_collectibles.c close.c filecheck.c init.c
 OBJ = $(SRC:.c=.o)
 
 MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -ldl 

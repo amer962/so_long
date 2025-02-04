@@ -6,47 +6,37 @@
 /*   By: aalquraa <aalquraa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:06:11 by aalquraa          #+#    #+#             */
-/*   Updated: 2025/02/01 21:18:14 by aalquraa         ###   ########.fr       */
+/*   Updated: 2025/02/04 19:18:11 by aalquraa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int  check_map_rectangular(char **map)
+static int	check_map_rectangular(char **map)
 {
-	int i;
-	int len;
-	
+	int	i;
+	int	len;
+
 	i = 0;
 	len = ft_strlen(map[0]);
 	while (map[i] != NULL)
 	{
 		if (ft_strlen(map[i]) != len)
 		{
-			return(0);
+			return (0);
 		}
 		i++;
 	}
 	return (1);
 }
 
-static int  check_not_empty(char **map)
-{
-	if (map[0] == NULL)
-	{
-		return (0);
-	}
-	return (1);
-
-}
-
-static int  check_walls(char **map)
+static int	check_walls(char **map)
 
 {
-	int i;
-	int len;
-	int row;
-	
+	int	i;
+	int	len;
+	int	row;
+
 	row = 0;
 	len = ft_strlen(map[0]);
 	i = 0;
@@ -67,11 +57,12 @@ static int  check_walls(char **map)
 	}
 	return (1);
 }
-static int  count_exit(char **map)
+
+static int	count_exit(char **map)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
@@ -94,11 +85,11 @@ static int  count_exit(char **map)
 	return (1);
 }
 
-static int  count_player(char **map)
+static int	count_player(char **map)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	j = 0;
@@ -121,12 +112,12 @@ static int  count_player(char **map)
 	return (1);
 }
 
-static  int count_collectibles(char **map)
+static int	count_collectibles(char **map)
 {
-	int i;
-	int j;
-	int count;
-	
+	int	i;
+	int	j;
+	int	count;
+
 	i = 0;
 	j = 0;
 	count = 0;
@@ -149,10 +140,10 @@ static  int count_collectibles(char **map)
 }
 static int	notchar(char **map)
 {
-	int i;
-	int j;
-	int count;
-	
+	int	i;
+	int	j;
+	int	count;
+
 	i = 0;
 	j = 0;
 	count = 0;
@@ -161,7 +152,8 @@ static int	notchar(char **map)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] != 'C' && map[i][j] != 'P' && map[i][j] != 'E' && map[i][j] != '1' && map[i][j] != '0')
+			if (map[i][j] != 'C' && map[i][j] != 'P' && map[i][j] != 'E'
+				&& map[i][j] != '1' && map[i][j] != '0')
 				count++;
 			j++;
 		}
@@ -170,46 +162,39 @@ static int	notchar(char **map)
 		{
 			return (0);
 		}
-		
 	}
 	return (1);
 }
 
-void    check_errormap(char **map)
+void	check_errormap(char **map)
 {
 	if (!check_map_rectangular(map))
 	{
-		perror("Error: The map is not rectangular.\n");
-		exit(EXIT_FAILURE);
-	}
-	if (!check_not_empty(map))
-	{
-		perror("Error: The map is empty.\n");
+		write (2, "Error: The map is not rectangular.\n", 36);
 		exit(EXIT_FAILURE);
 	}
 	if (!check_walls(map))
 	{
-		perror("Error: The map is not enclosed by walls.\n");
+		write (2, "Error: The map is not enclosed by walls.\n", 42);
 		exit(EXIT_FAILURE);
 	}
 	if (!count_exit(map))
 	{
-		perror("Error: The map must have exactly one exit.\n");
+		write (2, "Error: The map must have exactly one exit.\n", 44);
 		exit(EXIT_FAILURE);
 	}
 	if (!count_player(map))
 	{
-		perror("Error: The map must have exactly one start position.\n");
+		write (2, "Error: The map must have exactly one start position.\n", 54);
 		exit(EXIT_FAILURE);
 	}
 	if (!count_collectibles(map))
 	{
-		perror("Error: The map must contain at least one collectible.\n");
-		exit(EXIT_FAILURE);
+		write (2, "Error: The map must contain at least one collectible.\n", 55);
 	}
 	if (!notchar(map))
 	{
-		perror("Error: The map contain char not allow.\n");
+		write (2, "Error: The map contain char not allow.\n", 40);
 		exit(EXIT_FAILURE);
 	}
 	return ;
